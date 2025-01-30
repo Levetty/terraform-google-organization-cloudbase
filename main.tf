@@ -43,3 +43,13 @@ resource "google_organization_iam_member" "bind_cloudbase_custom_role_org" {
   role   = "organizations/${var.organization_id}/roles/${google_organization_iam_custom_role.cloudbase_org_custom_role.role_id}"
   member = "serviceAccount:${google_service_account.cloudbase_service_account.email}"
 }
+
+resource "google_project_service" "enable_apis" {
+  for_each           = toset([
+    "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",
+  ])
+  project            = var.project_id
+  service            = each.key
+  disable_on_destroy = false
+}
