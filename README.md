@@ -6,7 +6,7 @@ A Terraform module to connect a Google Cloud Organization to Cloudbase.
 ```
 module "cloudbase" {
   source  = "Levetty/organization-cloudbase/google"
-  version = "0.0.2"
+  version = "0.0.3"
 
   project_id      = "xxx" # required
   organization_id = "xxx" # required
